@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Solução – desafio_2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-172ba59bd5e0b52282274ba0c0cc16fc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">desafio_2026</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./orientacoes.html"> 
+<span class="menu-text">Orientações</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./solucao.html" aria-current="page"> 
+<span class="menu-text">Solução</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#pacotes-e-dados" id="toc-pacotes-e-dados" class="nav-link active" data-scroll-target="#pacotes-e-dados">Pacotes e dados</a></li>
+  <li><a href="#exploracao" id="toc-exploracao" class="nav-link" data-scroll-target="#exploracao">exploracao</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Solução</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="pacotes-e-dados" class="level1">
+<h1>Pacotes e dados</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Escreva seu código aqui para carregar os pacotes e importar os dados.</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Importar os quatro conjuntos de dados</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>laboratorio <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"laboratorio.xlsx"</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>capsulas <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"capsulas.xlsx"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>graos <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"graos.csv"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mmg <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"mmg.xlsx"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Verificar a estrutura dos dados</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(laboratorio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 600
+Columns: 9
+$ IMG    &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, …
+$ TIPO   &lt;chr&gt; "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURADA…
+$ GEN    &lt;chr&gt; "G1", "G1", "G1", "G1", "G1", "G3", "G3", "G3", "G3", "G3", "G5…
+$ PLANTA &lt;chr&gt; "P1", "P2", "P3", "P4", "P5", "P1", "P2", "P3", "P4", "P5", "P1…
+$ AP     &lt;dbl&gt; 78.0, 82.0, 70.0, 68.0, 88.0, 75.5, 74.0, NA, NA, NA, 71.0, 76.…
+$ AC     &lt;dbl&gt; 42, 37, 34, 40, 44, 38, 43, NA, NA, NA, 42, 45, 41, 42, 40, 42,…
+$ NR     &lt;dbl&gt; 3, 3, 3, 2, 2, 4, 3, NA, NA, NA, 4, 5, 6, 5, 2, 1, 2, NA, 3, 4,…
+$ MC     &lt;dbl&gt; 4.78, 6.87, 3.33, 2.85, 5.19, 8.00, 3.50, NA, NA, NA, 4.60, 6.0…
+$ MG     &lt;dbl&gt; 3.76, 5.30, 2.66, 2.32, 3.91, 3.97, 3.00, NA, NA, NA, 3.70, 5.9…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(capsulas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 30,380
+Columns: 35
+$ img                  &lt;chr&gt; "100_Cápsulas_1_2023-12-22-07-58-19", "100_Cápsul…
+$ id                   &lt;dbl&gt; 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1…
+$ x                    &lt;dbl&gt; 532.1983, 425.7173, 554.3911, 462.2101, 512.9692,…
+$ y                    &lt;dbl&gt; 231.2042, 423.0140, 321.6590, 282.3858, 338.6506,…
+$ area                 &lt;dbl&gt; 0.3760606, 0.3570953, 0.3585926, 0.3600898, 0.351…
+$ area_ch              &lt;dbl&gt; 0.3679504, 0.3493595, 0.3512311, 0.3524788, 0.345…
+$ perimeter            &lt;dbl&gt; 2.251678, 2.197744, 2.193911, 2.220084, 2.206998,…
+$ radius_mean          &lt;dbl&gt; 0.3388563, 0.3300150, 0.3308783, 0.3316009, 0.327…
+$ radius_min           &lt;dbl&gt; 0.3154638, 0.3088185, 0.3041235, 0.3049880, 0.291…
+$ radius_max           &lt;dbl&gt; 0.3739915, 0.3514735, 0.3592456, 0.3684113, 0.353…
+$ radius_sd            &lt;dbl&gt; 0.012830730, 0.010492648, 0.012108347, 0.01274937…
+$ diam_mean            &lt;dbl&gt; 0.6777126, 0.6600299, 0.6617566, 0.6632017, 0.655…
+$ diam_min             &lt;dbl&gt; 0.6309276, 0.6176370, 0.6082471, 0.6099760, 0.582…
+$ diam_max             &lt;dbl&gt; 0.7479830, 0.7029469, 0.7184913, 0.7368226, 0.707…
+$ major_axis           &lt;dbl&gt; 0.2456559, 0.2364580, 0.2391584, 0.2392332, 0.239…
+$ minor_axis           &lt;dbl&gt; 0.2337522, 0.2304489, 0.2289740, 0.2299735, 0.224…
+$ caliper              &lt;dbl&gt; 0.7211426, 0.6909232, 0.7045140, 0.7136640, 0.696…
+$ length               &lt;dbl&gt; 0.7143581, 0.6879114, 0.6815191, 0.6833401, 0.694…
+$ width                &lt;dbl&gt; 0.6746102, 0.6514003, 0.6480365, 0.6535871, 0.639…
+$ radius_ratio         &lt;dbl&gt; 1.185529, 1.138123, 1.181249, 1.207953, 1.215642,…
+$ theta                &lt;dbl&gt; 1.2597170, 0.5267568, 1.5574915, 1.1712844, 0.656…
+$ eccentricity         &lt;dbl&gt; 0.3075155, 0.2240093, 0.2887138, 0.2755232, 0.347…
+$ form_factor          &lt;dbl&gt; 0.9320840, 0.9290516, 0.9362097, 0.9180827, 0.906…
+$ narrow_factor        &lt;dbl&gt; 1.009497, 1.004378, 1.033741, 1.044376, 1.003264,…
+$ asp_ratio            &lt;dbl&gt; 1.058920, 1.056050, 1.051668, 1.045523, 1.085734,…
+$ rectangularity       &lt;dbl&gt; 1.281478, 1.254863, 1.231618, 1.240308, 1.264048,…
+$ pd_ratio             &lt;dbl&gt; 3.122376, 3.180881, 3.114077, 3.110826, 3.167888,…
+$ plw_ratio            &lt;dbl&gt; 1.621115, 1.640950, 1.650109, 1.660587, 1.654433,…
+$ solidity             &lt;dbl&gt; 1.0220414, 1.0221429, 1.0209591, 1.0215929, 1.016…
+$ convexity            &lt;dbl&gt; 0.9014522, 0.9029667, 0.8958492, 0.9033218, 0.887…
+$ elongation           &lt;dbl&gt; 0.05564140, 0.05307529, 0.04912929, 0.04354064, 0…
+$ circularity          &lt;dbl&gt; 13.48201, 13.52602, 13.42260, 13.68762, 13.86298,…
+$ circularity_haralick &lt;dbl&gt; 26.409747, 31.452017, 27.326462, 26.009188, 22.93…
+$ circularity_norm     &lt;dbl&gt; 0.8937368, 0.8897730, 0.8964680, 0.8792726, 0.867…
+$ coverage             &lt;dbl&gt; 0.0010058898, 0.0009551615, 0.0009591663, 0.00096…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(graos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 207,835
+Columns: 12
+$ img              &lt;chr&gt; "1_Grãos - contagem_1_2024-02-17-02-43-01", "1_Grãos …
+$ id               &lt;int&gt; 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 1…
+$ x                &lt;dbl&gt; 1700.8437, 1493.4445, 1455.1029, 849.5265, 1582.8226,…
+$ y                &lt;dbl&gt; 1272.9081, 941.5797, 1333.2892, 1598.4318, 1411.4493,…
+$ area             &lt;dbl&gt; 0.10135862, 0.07016216, 0.09227459, 0.06657636, 0.062…
+$ major_axis       &lt;dbl&gt; 0.1513319, 0.1300068, 0.1420083, 0.1266252, 0.1238013…
+$ minor_axis       &lt;dbl&gt; 0.10041402, 0.07962025, 0.09398414, 0.07716706, 0.073…
+$ length           &lt;dbl&gt; 0.4720392, 0.4189940, 0.4609997, 0.4056418, 0.3954939…
+$ width            &lt;dbl&gt; 0.3247766, 0.2256608, 0.3001735, 0.2176169, 0.2082889…
+$ eccentricity     &lt;dbl&gt; 0.7481452, 0.7905239, 0.7496614, 0.7928530, 0.8027846…
+$ circularity_norm &lt;dbl&gt; 0.5251890, 0.7507090, 0.5260928, 0.7618708, 0.7394690…
+$ asp_ratio        &lt;dbl&gt; 1.453427, 1.856743, 1.535778, 1.864018, 1.898775, 1.7…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(mmg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 120
+Columns: 6
+$ PLOT &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19…
+$ ROW  &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2,…
+$ COL  &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 1, 2, 3, 4, 5,…
+$ TIPO &lt;chr&gt; "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURADA",…
+$ GEN  &lt;chr&gt; "G1", "G3", "G5", "G6", "G7", "G18", "G19", "G20", "G21", "G23", …
+$ mmg  &lt;dbl&gt; 3.650, NA, 3.086, 4.027, 1.927, 2.254, 5.374, 2.478, 4.307, 3.032…</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Visualizar as primeiras linhas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(laboratorio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  IMG    TIPO GEN PLANTA   AP AC NR   MC   MG
+1   1 DOURADA  G1     P1 78.0 42  3 4.78 3.76
+2   2 DOURADA  G1     P2 82.0 37  3 6.87 5.30
+3   3 DOURADA  G1     P3 70.0 34  3 3.33 2.66
+4   4 DOURADA  G1     P4 68.0 40  2 2.85 2.32
+5   5 DOURADA  G1     P5 88.0 44  2 5.19 3.91
+6   6 DOURADA  G3     P1 75.5 38  4 8.00 3.97</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(capsulas)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                 img id        x        y      area   area_ch
+1 100_Cápsulas_1_2023-12-22-07-58-19  2 532.1983 231.2042 0.3760606 0.3679504
+2 100_Cápsulas_1_2023-12-22-07-58-19  3 425.7173 423.0140 0.3570953 0.3493595
+3 100_Cápsulas_1_2023-12-22-07-58-19  4 554.3911 321.6590 0.3585926 0.3512311
+4 100_Cápsulas_1_2023-12-22-07-58-19  5 462.2101 282.3858 0.3600898 0.3524788
+5 100_Cápsulas_1_2023-12-22-07-58-19  6 512.9692 338.6506 0.3513558 0.3457411
+6 100_Cápsulas_1_2023-12-22-07-58-19  7 590.4902 298.8677 0.3353851 0.3285227
+  perimeter radius_mean radius_min radius_max  radius_sd diam_mean  diam_min
+1  2.251678   0.3388563  0.3154638  0.3739915 0.01283073 0.6777126 0.6309276
+2  2.197744   0.3300150  0.3088185  0.3514735 0.01049265 0.6600299 0.6176370
+3  2.193911   0.3308783  0.3041235  0.3592456 0.01210835 0.6617566 0.6082471
+4  2.220084   0.3316009  0.3049880  0.3684113 0.01274937 0.6632017 0.6099760
+5  2.206998   0.3275266  0.2911485  0.3539325 0.01428226 0.6550532 0.5822970
+6  2.139977   0.3195535  0.2992711  0.3417907 0.01031085 0.6391069 0.5985422
+   diam_max major_axis minor_axis   caliper    length     width radius_ratio
+1 0.7479830  0.2456559  0.2337522 0.7211426 0.7143581 0.6746102     1.185529
+2 0.7029469  0.2364580  0.2304489 0.6909232 0.6879114 0.6514003     1.138123
+3 0.7184913  0.2391584  0.2289740 0.7045140 0.6815191 0.6480365     1.181249
+4 0.7368226  0.2392332  0.2299735 0.7136640 0.6833401 0.6535871     1.207953
+5 0.7078649  0.2391301  0.2242604 0.6966780 0.6944117 0.6395783     1.215642
+6 0.6835815  0.2275320  0.2246086 0.6644100 0.6615646 0.6529985     1.142077
+       theta eccentricity form_factor narrow_factor asp_ratio rectangularity
+1  1.2597170    0.3075155   0.9320840      1.009497  1.058920       1.281478
+2  0.5267568    0.2240093   0.9290516      1.004378  1.056050       1.254863
+3  1.5574915    0.2887138   0.9362097      1.033741  1.051668       1.231618
+4  1.1712844    0.2755232   0.9180827      1.044376  1.045523       1.240308
+5  0.6561062    0.3471288   0.9064698      1.003264  1.085734       1.264048
+6 -0.5731311    0.1597859   0.9203128      1.004301  1.013118       1.288074
+  pd_ratio plw_ratio solidity convexity elongation circularity
+1 3.122376  1.621115 1.022041 0.9014522 0.05564140    13.48201
+2 3.180881  1.640950 1.022143 0.9029667 0.05307529    13.52602
+3 3.114077  1.650109 1.020959 0.8958492 0.04912929    13.42260
+4 3.110826  1.660587 1.021593 0.9033218 0.04354064    13.68762
+5 3.167888  1.654433 1.016240 0.8875671 0.07896379    13.86298
+6 3.220868  1.627900 1.020889 0.8924996 0.01294828    13.65446
+  circularity_haralick circularity_norm     coverage
+1             26.40975        0.8937368 0.0010058898
+2             31.45202        0.8897730 0.0009551615
+3             27.32646        0.8964680 0.0009591663
+4             26.00919        0.8792726 0.0009631712
+5             22.93241        0.8671980 0.0009398095
+6             30.99197        0.8795698 0.0008970909</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(graos)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                       img id         x         y       area
+1 1_Grãos - contagem_1_2024-02-17-02-43-01  2 1700.8437 1272.9081 0.10135862
+2 1_Grãos - contagem_1_2024-02-17-02-43-01  3 1493.4445  941.5797 0.07016216
+3 1_Grãos - contagem_1_2024-02-17-02-43-01  4 1455.1029 1333.2892 0.09227459
+4 1_Grãos - contagem_1_2024-02-17-02-43-01  5  849.5265 1598.4318 0.06657636
+5 1_Grãos - contagem_1_2024-02-17-02-43-01  6 1582.8226 1411.4493 0.06263198
+6 1_Grãos - contagem_1_2024-02-17-02-43-01  7 1301.7381 1697.8112 0.06358819
+  major_axis minor_axis    length     width eccentricity circularity_norm
+1  0.1513319 0.10041402 0.4720392 0.3247766    0.7481452        0.5251890
+2  0.1300068 0.07962025 0.4189940 0.2256608    0.7905239        0.7507090
+3  0.1420083 0.09398414 0.4609997 0.3001735    0.7496614        0.5260928
+4  0.1266252 0.07716706 0.4056418 0.2176169    0.7928530        0.7618708
+5  0.1238013 0.07381888 0.3954939 0.2082889    0.8027846        0.7394690
+6  0.1249622 0.07556822 0.3862244 0.2185998    0.7964316        0.7556891
+  asp_ratio
+1  1.453427
+2  1.856743
+3  1.535778
+4  1.864018
+5  1.898775
+6  1.766810</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(mmg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  PLOT ROW COL    TIPO GEN   mmg
+1    1   1   1 DOURADA  G1 3.650
+2    2   1   2 DOURADA  G3    NA
+3    3   1   3 DOURADA  G5 3.086
+4    4   1   4 DOURADA  G6 4.027
+5    5   1   5 DOURADA  G7 1.927
+6    6   1   6 DOURADA G18 2.254</code></pre>
+</div>
+</div>
+</section>
+<section id="exploracao" class="level1">
+<h1>exploracao</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crie os blocos de código necessários para processar os dados de grãos, </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cápsulas e depois uni-los aos dados de laboratório.</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumir as características dos grãos por planta</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>graos_resumo <span class="ot">&lt;-</span> </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  graos <span class="sc">%&gt;%</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(img) <span class="sc">%&gt;%</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">NG =</span> <span class="fu">n</span>(),</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">CG =</span> <span class="fu">mean</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">LG =</span> <span class="fu">mean</span>(width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(graos_resumo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+  img                                           NG    CG    LG
+  &lt;chr&gt;                                      &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 100_Grãos - contagem_1_2023-12-22-08-06-58   231 0.389 0.202
+2 101_Grãos - contagem_1_2024-02-22-03-17-23   288 0.360 0.177
+3 102_Grãos - contagem_1_2024-02-22-03-19-38   328 0.364 0.178
+4 103_Grãos - contagem_1_2024-02-22-03-21-44   246 0.363 0.183
+5 106_Grãos - contagem_1_2024-02-28-03-45-18   699 0.366 0.182
+6 107_Grãos - contagem_1_2024-02-28-03-46-33   762 0.363 0.181</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar a estrutura do novo data frame</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(graos_resumo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 418
+Columns: 4
+$ img &lt;chr&gt; "100_Grãos - contagem_1_2023-12-22-08-06-58", "101_Grãos - contage…
+$ NG  &lt;int&gt; 231, 288, 328, 246, 699, 762, 704, 422, 352, 1572, 496, 220, 281, …
+$ CG  &lt;dbl&gt; 0.3894683, 0.3597025, 0.3635707, 0.3629542, 0.3662044, 0.3632955, …
+$ LG  &lt;dbl&gt; 0.2023824, 0.1768752, 0.1777208, 0.1827836, 0.1822657, 0.1808560, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo número total de cápsulas (NC)** para cada planta.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>capsulas_nc <span class="ot">&lt;-</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  capsulas <span class="sc">%&gt;%</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(img) <span class="sc">%&gt;%</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">NC =</span> <span class="fu">n</span>(),</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(capsulas_nc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  img                                   NC
+  &lt;chr&gt;                              &lt;int&gt;
+1 100_Cápsulas_1_2023-12-22-07-58-19    32
+2 101_Cápsulas_1_2024-02-22-03-06-13    43
+3 102_Cápsulas_1_2024-02-22-03-09-17    54
+4 103_Cápsulas_1_2024-02-22-03-10-41    37
+5 104_Cápsulas_1_2024-02-22-03-12-01    52
+6 105_Cápsulas_1_2024-02-22-03-14-13    90</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar a estrutura do novo data frame</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(capsulas_nc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 409
+Columns: 2
+$ img &lt;chr&gt; "100_Cápsulas_1_2023-12-22-07-58-19", "101_Cápsulas_1_2024-02-22-0…
+$ NC  &lt;int&gt; 32, 43, 54, 37, 52, 90, 91, 103, 92, 58, 55, 237, 76, 37, 36, 90, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extração do ID</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>graos_resumo <span class="ot">&lt;-</span> graos_resumo <span class="sc">%&gt;%</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">str_extract</span>(<span class="fu">as.character</span>(img), <span class="st">"^</span><span class="sc">\\</span><span class="st">d+"</span>), </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>(graos_resumo<span class="sc">$</span>img)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>capsulas_nc <span class="ot">&lt;-</span> capsulas_nc <span class="sc">%&gt;%</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">str_extract</span>(<span class="fu">as.character</span>(img), <span class="st">"^</span><span class="sc">\\</span><span class="st">d+"</span>),</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unique</span>(capsulas_nc<span class="sc">$</span>img)</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

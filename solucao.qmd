@@ -1,0 +1,94 @@
+---
+title: "Solução"
+format: html
+---
+
+# Pacotes e dados
+
+```{r setup, message=FALSE, warning=FALSE}
+# Escreva seu código aqui para carregar os pacotes e importar os dados.
+
+library(rio)
+library(tidyverse)
+
+# 3. Importar os quatro conjuntos de dados
+laboratorio <- import("laboratorio.xlsx")
+
+capsulas <- import("capsulas.xlsx")
+
+graos <- import("graos.csv")
+
+mmg <- import("mmg.xlsx")
+
+# 4. Verificar a estrutura dos dados
+glimpse(laboratorio)
+glimpse(capsulas)
+glimpse(graos)
+glimpse(mmg)
+
+# 5. Visualizar as primeiras linhas
+head(laboratorio)
+head(capsulas)
+head(graos)
+head(mmg)
+
+```
+
+
+# exploracao
+
+
+```{r processamento_por_planta}
+# Crie os blocos de código necessários para processar os dados de grãos, 
+# cápsulas e depois uni-los aos dados de laboratório.
+
+
+# Resumir as características dos grãos por planta
+graos_resumo <- 
+  graos %>%
+  group_by(img) %>%
+  summarise(
+    NG = n(),
+    CG = mean(length, na.rm = TRUE),
+    LG = mean(width, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Visualizar o resultado
+head(graos_resumo)
+
+# Verificar a estrutura do novo data frame
+glimpse(graos_resumo)
+
+# Calculo número total de cápsulas (NC)** para cada planta.
+capsulas_nc <- 
+  capsulas %>%
+  group_by(img) %>%
+  summarise(
+    NC = n(),
+    .groups = "drop"
+  )
+
+# Visualizar o resultado
+head(capsulas_nc)
+
+# Verificar a estrutura do novo data frame
+glimpse(capsulas_nc)
+
+# Extração do ID
+graos_resumo <- graos_resumo %>%
+  mutate(
+    ID = str_extract(as.character(img), "^\\d+"), 
+    unique(graos_resumo$img)
+  )
+
+capsulas_nc <- capsulas_nc %>%
+  mutate(
+    ID = str_extract(as.character(img), "^\\d+"),
+     unique(capsulas_nc$img)
+  )
+
+
+
+```
+
