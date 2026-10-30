@@ -69,12 +69,6 @@ Com os dados consolidados por planta, o próximo passo é agregar as informaçõ
 - **Junção Final:** Adicione a informação de massa de mil grãos (`mmg`) do arquivo `mmg` ao seu data frame de genótipos.
 - **Resultado Final:** O produto desta etapa deve ser um data frame limpo e organizado, onde **cada linha representa um genótipo** e as colunas representam as médias de suas características.
 
-```{r processamento_por_genotipo}
-# Escreva seu código aqui para agrupar os dados por genótipo,
-# calcular as médias e juntar com os dados de massa de mil grãos.
-
-
-```
 
 ### 4. Exploração e Visualização
 
@@ -86,7 +80,7 @@ Agora que você tem um dataset final consolidado por genótipo, crie **pelo meno
   - Quais os top 5 genótipos para produção de grãos (MG) de cada tipo de linhaça?
   - Calcule o diferencial de seleção, ou seja, a diferença da média geral e a média dos top 5 genótipos, para cada tipo de linhaça, representando os valores em um gráfico de barras.
 
-## Conclusão
+### Conclusão
 
 Nesta seção, escreva um breve parágrafo resumindo suas principais descobertas com base nas visualizações que você criou.
 

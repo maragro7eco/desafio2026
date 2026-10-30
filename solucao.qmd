@@ -3,30 +3,29 @@ title: "Solução"
 format: html
 ---
 
-# Pacotes e dados
+### 1. Preparação do Ambiente
 
 ```{r setup, message=FALSE, warning=FALSE}
-# Escreva seu código aqui para carregar os pacotes e importar os dados.
+# 1.1. Escreva seu código aqui para carregar os pacotes e importar os dados.
+
+# Pacotes e dados
 
 library(rio)
 library(tidyverse)
 
-# 3. Importar os quatro conjuntos de dados
+# 1.2. Importar os quatro conjuntos de dados
 laboratorio <- import("laboratorio.xlsx")
-
 capsulas <- import("capsulas.xlsx")
-
 graos <- import("graos.csv")
-
 mmg <- import("mmg.xlsx")
 
-# 4. Verificar a estrutura dos dados
+# 1.3. Verificar a estrutura dos dados
 glimpse(laboratorio)
 glimpse(capsulas)
 glimpse(graos)
 glimpse(mmg)
 
-# 5. Visualizar as primeiras linhas
+# 1.4. Visualizar as primeiras linhas
 head(laboratorio)
 head(capsulas)
 head(graos)
@@ -34,61 +33,176 @@ head(mmg)
 
 ```
 
-
-# exploracao
-
+### 2. Análise e Consolidação por Planta
 
 ```{r processamento_por_planta}
+
 # Crie os blocos de código necessários para processar os dados de grãos, 
 # cápsulas e depois uni-los aos dados de laboratório.
 
-
-# Resumir as características dos grãos por planta
+# 2.1. Resumir as características dos grãos por planta
 graos_resumo <- 
   graos %>%
-  group_by(img) %>%
+  mutate(INDIVIDUO = parse_number(img)) %>% 
+  group_by(INDIVIDUO) %>% 
   summarise(
-    NG = n(),
-    CG = mean(length, na.rm = TRUE),
-    LG = mean(width, na.rm = TRUE),
-    .groups = "drop"
+    NG = n(),                        # Número total de grãos
+    CG = mean(length, na.rm = TRUE), # Comprimento médio dos grãos
+    LG = mean(width, na.rm = TRUE)   # Largura média dos grãos
   )
 
-# Visualizar o resultado
-head(graos_resumo)
-
-# Verificar a estrutura do novo data frame
-glimpse(graos_resumo)
-
-# Calculo número total de cápsulas (NC)** para cada planta.
-capsulas_nc <- 
-  capsulas %>%
-  group_by(img) %>%
+# 2.2. Extrair a característica número total de cápsula das cápsulas por planta
+capsulas_resumo <- capsulas %>%
+  # Extrair o número da planta do início da string da coluna 'img'
+  mutate(INDIVIDUO = parse_number(img)) %>% 
+  group_by(INDIVIDUO) %>% 
   summarise(
-    NC = n(),
-    .groups = "drop"
+    NC = n()                         # Número total de cápsulas
   )
 
-# Visualizar o resultado
-head(capsulas_nc)
+# 2.3. Criar o identificador na tabela de laboratório
+laboratorio_id <- laboratorio %>%
+  mutate(INDIVIDUO = parse_number(as.character(IMG)))
 
-# Verificar a estrutura do novo data frame
-glimpse(capsulas_nc)
+# 2.4. Unificar os dados por planta
+dados_planta <- laboratorio_id %>%
+  left_join(capsulas_resumo, by = "INDIVIDUO") %>%
+  left_join(graos_resumo, by = "INDIVIDUO")
 
-# Extração do ID
-graos_resumo <- graos_resumo %>%
-  mutate(
-    ID = str_extract(as.character(img), "^\\d+"), 
-    unique(graos_resumo$img)
-  )
+# 2.5. Diagnóstico dos dados ausentes (para inspecionar os indivíduos 8, 9, 10, etc.)
+dados_ausentes <- dados_planta %>%
+  filter(is.na(NC) | is.na(NG)) %>%
+  select(INDIVIDUO, GEN, TIPO, NC, NG)
 
-capsulas_nc <- capsulas_nc %>%
-  mutate(
-    ID = str_extract(as.character(img), "^\\d+"),
-     unique(capsulas_nc$img)
-  )
-
+# Visualizar a tabela de ausentes
+print(dados_ausentes)
 
 
 ```
+
+### 3. Análise e Consolidação por Genótipo
+
+```{r}
+
+# 3.1. Agregação: Calcular a média de todas as variáveis numéricas para cada genótipo (GEN)
+dados_genotipo <- dados_planta %>%
+  group_by(GEN, TIPO) %>% # Mantemos também o TIPO (DOURADA ou MARROM) para referência
+  summarise(
+    # Variáveis fenotípicas/laboratório (usando na.rm = TRUE por segurança)
+    AP_media = mean(AP, na.rm = TRUE),
+    AC_media = mean(AC, na.rm = TRUE),
+    NR_media = mean(NR, na.rm = TRUE),
+    MC_media = mean(MC, na.rm = TRUE),
+    MG_media = mean(MG, na.rm = TRUE),
+    
+    # Variáveis extraídas das imagens (cápsulas e grãos)
+    NC_medio = mean(NC, na.rm = TRUE),
+    NG_medio = mean(NG, na.rm = TRUE),
+    CG_medio = mean(CG, na.rm = TRUE),
+    LG_medio = mean(LG, na.rm = TRUE),
+    .groups = "drop" # Remove o agrupamento após o resumo
+  )
+
+# 3.2. Junção Final: Adicionar a massa de mil grãos (mmg) ao data frame de genótipos
+dados_finais <- dados_genotipo %>%
+  left_join(mmg, by = "GEN")
+
+# Resultado Final: Visualizar as primeiras linhas da tabela consolidada por genótipo
+head(dados_finais)
+
+# 3.3. Ordenar os genótipos de forma numérica (G1, G2, G3... em vez de G1, G10...)
+dados_finais <- dados_finais %>%
+  mutate(GEN_NUM = parse_number(GEN)) %>% # Extrai o número do genótipo temporariamente
+  arrange(TIPO.x, GEN_NUM) %>%             # Ordena por TIPO e pelo número do genótipo
+  select(-GEN_NUM)                         # Remove a coluna temporária
+
+# Visualizar as primeiras linhas organizadas
+head(dados_finais, 15)
+
+# 3.4. Limpar e selecionar apenas as colunas essenciais para o resultado final
+dados_finais_limpo <- dados_finais %>%
+  # Manter apenas uma coluna de TIPO (renomeando para 'TIPO')
+  mutate(TIPO = TIPO.x) %>%
+  # Selecionar e ordenar as colunas de forma limpa
+  select(GEN, TIPO, AP_media, AC_media, NR_media, MC_media, MG_media, 
+         NC_medio, NG_medio, CG_medio, LG_medio, mmg)
+
+# Visualizar o resultado final limpo
+head(dados_finais_limpo)
+
+```
+
+### 4. Exploração e Visualização
+
+```{r}
+
+# 4.1. Gráfico 1: Relação entre altura da planta (AP_media) e número de cápsulas (NC_medio)
+ggplot(dados_finais_limpo, aes(x = AP_media, y = NC_medio, color = TIPO)) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_smooth(method = "lm", se = FALSE, linetype = "dashed") +
+  labs(
+    title = "Relação entre Altura da Planta e Número de Cápsulas",
+    subtitle = "Comparação entre os tipos de linhaça (Dourada e Marrom)",
+    x = "Altura Média da Planta (AP)",
+    y = "Número Médio de Cápsulas (NC)",
+    color = "Tipo de Linhaça"
+  ) +
+  theme_minimal()
+
+# 4.2. Gráfico 2: Comparação de altura entre Dourada e Marrom
+ggplot(dados_finais_limpo, aes(x = TIPO, y = AP_media, fill = TIPO)) +
+  geom_boxplot(alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.2, size = 2, alpha = 0.7) +
+  labs(
+    title = "Distribuição da Altura de Planta por Tipo de Linhaça",
+    x = "Tipo de Linhaça",
+    y = "Altura Média da Planta (AP)",
+    fill = "Tipo"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+library(dplyr)
+
+# 4.3. Encontrar os Top 5 genótipos por tipo de linhaça com base na massa de grãos (MG_media)
+top5_genotipos <- dados_finais_limpo %>%
+  group_by(TIPO) %>%
+  slice_max(order_by = MG_media, n = 5) %>%
+  ungroup()
+
+# Visualizar a tabela com os top 5
+print(top5_genotipos %>% select(TIPO, GEN, MG_media))
+
+
+# 4.4. Calcular a média geral e a média dos top 5 para cada tipo
+diferencial_selecao <- dados_finais_limpo %>%
+  group_by(TIPO) %>%
+  summarise(
+    Media_Geral = mean(MG_media, na.rm = TRUE),
+    Media_Top5 = mean(MG_media[GEN %in% top5_genotipos$GEN], na.rm = TRUE),
+    Diferencial_Selecao = Media_Top5 - Media_Geral
+  )
+
+# Exibir os valores calculados
+print(diferencial_selecao)
+
+# 4.5. Gráfico 3: Representação do diferencial de seleção em gráfico de barras
+ggplot(diferencial_selecao, aes(x = TIPO, y = Diferencial_Selecao, fill = TIPO)) +
+  geom_col(width = 0.5, alpha = 0.8) +
+  geom_text(aes(label = round(Diferencial_Selecao, 2)), vjust = -0.5, size = 4) +
+  labs(
+    title = "Diferencial de Seleção para Produção de Grãos (MG) por Tipo",
+    subtitle = "Diferença entre a média dos Top 5 e a média geral",
+    x = "Tipo de Linhaça",
+    y = "Diferencial de Seleção (DS)",
+    fill = "Tipo"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+
+```
+
+### Conclusão
+A análise integrada dos dados fenotípicos, de imagem e de massa permitiu uma avaliação abrangente dos genótipos de linhaça. A exploração visual indicou uma relação positiva entre a altura das plantas e o número de cápsulas, além de evidenciar diferenças fenotípicas importantes entre os tipos Dourada e Marrom, especialmente em relação à altura e à produtividade, apresentando plantas do tipo linhaça Marrom com maior altura média. Por fim, a identificação dos genótipos superiores (Top 5), sendo os genótipos de linhaça Marrom G4 e G2, com MG media 7.04 e 6.32, respectivamente, e de linhaça Dourada G5 e G56, com MG media 5.28 e 5.09, respectivamente, os mais notáveis; e o cálculo do diferencial de seleção demonstraram o potencial de ganho genético para a produção de grãos, fornecendo subsídios consistentes para a recomendação e seleção de variedades mais produtivas no programa de melhoramento.
 

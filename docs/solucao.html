@@ -162,8 +162,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pacotes-e-dados" id="toc-pacotes-e-dados" class="nav-link active" data-scroll-target="#pacotes-e-dados">Pacotes e dados</a></li>
-  <li><a href="#exploracao" id="toc-exploracao" class="nav-link" data-scroll-target="#exploracao">exploracao</a></li>
+  <li><a href="#preparação-do-ambiente" id="toc-preparação-do-ambiente" class="nav-link active" data-scroll-target="#preparação-do-ambiente">1. Preparação do Ambiente</a></li>
+  <li><a href="#análise-e-consolidação-por-planta" id="toc-análise-e-consolidação-por-planta" class="nav-link" data-scroll-target="#análise-e-consolidação-por-planta">2. Análise e Consolidação por Planta</a></li>
+  <li><a href="#análise-e-consolidação-por-genótipo" id="toc-análise-e-consolidação-por-genótipo" class="nav-link" data-scroll-target="#análise-e-consolidação-por-genótipo">3. Análise e Consolidação por Genótipo</a></li>
+  <li><a href="#exploração-e-visualização" id="toc-exploração-e-visualização" class="nav-link" data-scroll-target="#exploração-e-visualização">4. Exploração e Visualização</a></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
   </ul>
 </nav>
     </div>
@@ -189,25 +192,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="pacotes-e-dados" class="level1">
-<h1>Pacotes e dados</h1>
+<section id="preparação-do-ambiente" class="level3">
+<h3 class="anchored" data-anchor-id="preparação-do-ambiente">1. Preparação do Ambiente</h3>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Escreva seu código aqui para carregar os pacotes e importar os dados.</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.1. Escreva seu código aqui para carregar os pacotes e importar os dados.</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Importar os quatro conjuntos de dados</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>laboratorio <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"laboratorio.xlsx"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>capsulas <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"capsulas.xlsx"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Pacotes e dados</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rio)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.2. Importar os quatro conjuntos de dados</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>laboratorio <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"laboratorio.xlsx"</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>capsulas <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"capsulas.xlsx"</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>graos <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"graos.csv"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>mmg <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"mmg.xlsx"</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Verificar a estrutura dos dados</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(laboratorio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mmg <span class="ot">&lt;-</span> <span class="fu">import</span>(<span class="st">"mmg.xlsx"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.3. Verificar a estrutura dos dados</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(laboratorio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 600
 Columns: 9
@@ -289,7 +291,7 @@ $ TIPO &lt;chr&gt; "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURADA", "DOURA
 $ GEN  &lt;chr&gt; "G1", "G3", "G5", "G6", "G7", "G18", "G19", "G20", "G21", "G23", …
 $ mmg  &lt;dbl&gt; 3.650, NA, 3.086, 4.027, 1.927, 2.254, 5.374, 2.478, 4.307, 3.032…</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Visualizar as primeiras linhas</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1.4. Visualizar as primeiras linhas</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(laboratorio)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  IMG    TIPO GEN PLANTA   AP AC NR   MC   MG
@@ -381,90 +383,471 @@ $ mmg  &lt;dbl&gt; 3.650, NA, 3.086, 4.027, 1.927, 2.254, 5.374, 2.478, 4.307, 3
 </div>
 </div>
 </section>
-<section id="exploracao" class="level1">
-<h1>exploracao</h1>
+<section id="análise-e-consolidação-por-planta" class="level3">
+<h3 class="anchored" data-anchor-id="análise-e-consolidação-por-planta">2. Análise e Consolidação por Planta</h3>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Crie os blocos de código necessários para processar os dados de grãos, </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cápsulas e depois uni-los aos dados de laboratório.</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumir as características dos grãos por planta</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>graos_resumo <span class="ot">&lt;-</span> </span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  graos <span class="sc">%&gt;%</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(img) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.1. Resumir as características dos grãos por planta</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>graos_resumo <span class="ot">&lt;-</span> </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  graos <span class="sc">%&gt;%</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INDIVIDUO =</span> <span class="fu">parse_number</span>(img)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(INDIVIDUO) <span class="sc">%&gt;%</span> </span>
 <span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">NG =</span> <span class="fu">n</span>(),</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">CG =</span> <span class="fu">mean</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">LG =</span> <span class="fu">mean</span>(width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(graos_resumo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">NG =</span> <span class="fu">n</span>(),                        <span class="co"># Número total de grãos</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">CG =</span> <span class="fu">mean</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="co"># Comprimento médio dos grãos</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">LG =</span> <span class="fu">mean</span>(width, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)   <span class="co"># Largura média dos grãos</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.2. Extrair a característica número total de cápsula das cápsulas por planta</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>capsulas_resumo <span class="ot">&lt;-</span> capsulas <span class="sc">%&gt;%</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extrair o número da planta do início da string da coluna 'img'</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INDIVIDUO =</span> <span class="fu">parse_number</span>(img)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(INDIVIDUO) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">NC =</span> <span class="fu">n</span>()                         <span class="co"># Número total de cápsulas</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.3. Criar o identificador na tabela de laboratório</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>laboratorio_id <span class="ot">&lt;-</span> laboratorio <span class="sc">%&gt;%</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INDIVIDUO =</span> <span class="fu">parse_number</span>(<span class="fu">as.character</span>(IMG)))</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.4. Unificar os dados por planta</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>dados_planta <span class="ot">&lt;-</span> laboratorio_id <span class="sc">%&gt;%</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(capsulas_resumo, <span class="at">by =</span> <span class="st">"INDIVIDUO"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(graos_resumo, <span class="at">by =</span> <span class="st">"INDIVIDUO"</span>)</span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="co"># 2.5. Diagnóstico dos dados ausentes (para inspecionar os indivíduos 8, 9, 10, etc.)</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>dados_ausentes <span class="ot">&lt;-</span> dados_planta <span class="sc">%&gt;%</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(NC) <span class="sc">|</span> <span class="fu">is.na</span>(NG)) <span class="sc">%&gt;%</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INDIVIDUO, GEN, TIPO, NC, NG)</span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar a tabela de ausentes</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dados_ausentes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 4
-  img                                           NG    CG    LG
-  &lt;chr&gt;                                      &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 100_Grãos - contagem_1_2023-12-22-08-06-58   231 0.389 0.202
-2 101_Grãos - contagem_1_2024-02-22-03-17-23   288 0.360 0.177
-3 102_Grãos - contagem_1_2024-02-22-03-19-38   328 0.364 0.178
-4 103_Grãos - contagem_1_2024-02-22-03-21-44   246 0.363 0.183
-5 106_Grãos - contagem_1_2024-02-28-03-45-18   699 0.366 0.182
-6 107_Grãos - contagem_1_2024-02-28-03-46-33   762 0.363 0.181</code></pre>
+<pre><code>    INDIVIDUO   GEN    TIPO NC   NG
+1           1    G1 DOURADA NA  732
+2           4    G1 DOURADA NA  463
+3           8    G3 DOURADA NA   NA
+4           9    G3 DOURADA NA   NA
+5          10    G3 DOURADA NA   NA
+6          11    G5 DOURADA NA  772
+7          70   G43 DOURADA 36   NA
+8          79   G56 DOURADA NA   NA
+9          80   G56 DOURADA NA   NA
+10        104   G75 DOURADA 52   NA
+11        105   G75 DOURADA 90   NA
+12        130   G92 DOURADA NA   NA
+13        131   G93 DOURADA NA  355
+14        133   G93 DOURADA NA   NA
+15        141  G133 DOURADA NA   NA
+16        142  G133 DOURADA NA   NA
+17        143  G133 DOURADA NA   NA
+18        144  G133 DOURADA NA   NA
+19        145  G133 DOURADA NA   NA
+20        146  G144 DOURADA NA   NA
+21        147  G144 DOURADA NA   NA
+22        148  G144 DOURADA NA   NA
+23        149  G144 DOURADA NA   NA
+24        150  G144 DOURADA NA   NA
+25        159  G148 DOURADA NA   NA
+26        160  G148 DOURADA NA   NA
+27        161  G149 DOURADA NA   NA
+28        162  G149 DOURADA NA   NA
+29        163  G149 DOURADA NA   NA
+30        164  G149 DOURADA NA   NA
+31        165  G149 DOURADA NA   NA
+32        166  G150 DOURADA NA   NA
+33        167  G150 DOURADA NA   NA
+34        168  G150 DOURADA NA   NA
+35        169  G150 DOURADA NA   NA
+36        170  G150 DOURADA NA   NA
+37        174  G195 DOURADA NA   NA
+38        175  G195 DOURADA NA   NA
+39        176  G197 DOURADA NA   NA
+40        177  G197 DOURADA NA   NA
+41        178  G197 DOURADA NA   NA
+42        179  G197 DOURADA NA   NA
+43        180  G197 DOURADA NA   NA
+44        200    G4  MARROM NA 2176
+45        215   G11  MARROM NA   NA
+46        222   G12  MARROM NA   NA
+47        223   G12  MARROM NA   NA
+48        224   G12  MARROM NA   NA
+49        225   G12  MARROM NA   NA
+50        240   G16  MARROM NA   NA
+51        260   G29  MARROM 79   NA
+52        283   G54  MARROM NA  628
+53        289   G63  MARROM NA   NA
+54        290   G63  MARROM NA   NA
+55        294   G64  MARROM NA   NA
+56        295   G64  MARROM NA   NA
+57        321   G78  MARROM NA   NA
+58        322   G78  MARROM NA   NA
+59        323   G78  MARROM NA   NA
+60        324   G78  MARROM NA   NA
+61        325   G78  MARROM NA   NA
+62        337   G84  MARROM NA   NA
+63        342   G86  MARROM NA   NA
+64        343   G86  MARROM NA   NA
+65        344   G86  MARROM NA   NA
+66        345   G86  MARROM NA   NA
+67        346   G89  MARROM NA   NA
+68        347   G89  MARROM NA   NA
+69        348   G89  MARROM NA   NA
+70        349   G89  MARROM NA   NA
+71        350   G89  MARROM NA   NA
+72        351   G94  MARROM NA   NA
+73        352   G94  MARROM NA   NA
+74        353   G94  MARROM NA   NA
+75        354   G94  MARROM NA   NA
+76        355   G94  MARROM NA   NA
+77        356   G95  MARROM NA   NA
+78        357   G95  MARROM NA   NA
+79        358   G95  MARROM NA   NA
+80        359   G95  MARROM NA   NA
+81        360   G95  MARROM NA   NA
+82        386  G137  MARROM NA  670
+83        387  G137  MARROM NA  592
+84        388  G137  MARROM NA   82
+85        389  G137  MARROM NA  440
+86        390  G137  MARROM NA   13
+87        397  G141  MARROM NA   NA
+88        398  G141  MARROM NA   NA
+89        399  G141  MARROM NA   NA
+90        400  G141  MARROM NA   NA
+91        401  G143  MARROM NA   NA
+92        402  G143  MARROM NA   NA
+93        403  G143  MARROM NA   NA
+94        404  G143  MARROM NA   NA
+95        405  G143  MARROM NA   NA
+96        406  G157  MARROM NA   NA
+97        407  G157  MARROM NA   NA
+98        408  G157  MARROM NA   NA
+99        409  G157  MARROM NA   NA
+100       410  G157  MARROM NA   NA
+101       412  G158  MARROM NA   NA
+102       413  G158  MARROM NA   NA
+103       414  G158  MARROM NA   NA
+104       415  G158  MARROM NA   NA
+105       416  G159  MARROM NA   NA
+106       417  G159  MARROM NA   NA
+107       418  G159  MARROM NA   NA
+108       419  G159  MARROM NA   NA
+109       420  G159  MARROM NA   NA
+110       436  G174  MARROM NA   NA
+111       437  G174  MARROM NA   NA
+112       438  G174  MARROM NA   NA
+113       439  G174  MARROM NA   NA
+114       440  G174  MARROM NA   NA
+115       441  G175  MARROM NA   NA
+116       442  G175  MARROM NA   NA
+117       443  G175  MARROM NA   NA
+118       444  G175  MARROM NA   NA
+119       445  G175  MARROM NA   NA
+120       446  G177  MARROM NA   NA
+121       447  G177  MARROM NA   NA
+122       448  G177  MARROM NA   NA
+123       449  G177  MARROM NA   NA
+124       450  G177  MARROM NA   NA
+125       451  G178  MARROM NA  158
+126       453  G178  MARROM NA   NA
+127       454  G178  MARROM NA   NA
+128       455  G178  MARROM NA   NA
+129       456  G185  MARROM NA   NA
+130       457  G185  MARROM NA   NA
+131       458  G185  MARROM NA   NA
+132       459  G185  MARROM NA   NA
+133       460  G185  MARROM NA   NA
+134       465  G196  MARROM NA   NA
+135       466  G202  MARROM NA   NA
+136       467  G202  MARROM NA   NA
+137       468  G202  MARROM NA   NA
+138       469  G202  MARROM NA   NA
+139       470  G202  MARROM NA   NA
+140       476  G206  MARROM NA   NA
+141       477  G206  MARROM NA   NA
+142       478  G206  MARROM NA   NA
+143       479  G206  MARROM NA   NA
+144       480  G206  MARROM NA   NA
+145       481  G211  MARROM NA   NA
+146       482  G211  MARROM NA   NA
+147       483  G211  MARROM NA   NA
+148       484  G211  MARROM NA   NA
+149       485  G211  MARROM NA   NA
+150       540  G226  MARROM NA  276
+151       547  G228  MARROM NA   NA
+152       548  G228  MARROM NA   NA
+153       549  G228  MARROM NA   NA
+154       550  G228  MARROM NA   NA
+155       551  G229  MARROM NA   NA
+156       552  G229  MARROM NA   NA
+157       553  G229  MARROM NA   NA
+158       554  G229  MARROM NA   NA
+159       555  G229  MARROM NA   NA
+160       556  G230  MARROM NA   NA
+161       557  G230  MARROM NA   NA
+162       558  G230  MARROM NA   NA
+163       559  G230  MARROM NA   NA
+164       560  G230  MARROM NA   NA
+165       566  G232  MARROM NA   NA
+166       567  G232  MARROM NA   NA
+167       568  G232  MARROM NA   NA
+168       569  G232  MARROM NA   NA
+169       570  G232  MARROM NA   NA
+170       575  G233  MARROM NA   NA
+171       576  G234  MARROM NA   NA
+172       577  G234  MARROM NA   NA
+173       578  G234  MARROM NA   NA
+174       579  G234  MARROM NA   NA
+175       580  G234  MARROM NA   NA
+176       581  G235  MARROM NA   NA
+177       582  G235  MARROM NA   NA
+178       583  G235  MARROM NA   NA
+179       584  G235  MARROM NA   NA
+180       585  G235  MARROM NA   NA
+181       586  G192  MARROM NA   NA
+182       587  G192  MARROM NA   NA
+183       588  G192  MARROM NA   NA
+184       589  G192  MARROM NA   NA
+185       590  G192  MARROM NA   NA
+186       591 GPOP1  MARROM NA   NA
+187       592 GPOP1  MARROM NA   NA
+188       593 GPOP1  MARROM NA   NA
+189       594 GPOP1  MARROM NA   NA
+190       595 GPOP1  MARROM NA   NA
+191       596 GPOP2  MARROM NA   NA
+192       597 GPOP2  MARROM NA   NA
+193       598 GPOP2  MARROM NA   NA
+194       599 GPOP2  MARROM NA   NA
+195       600 GPOP2  MARROM NA   NA</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar a estrutura do novo data frame</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(graos_resumo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="análise-e-consolidação-por-genótipo" class="level3">
+<h3 class="anchored" data-anchor-id="análise-e-consolidação-por-genótipo">3. Análise e Consolidação por Genótipo</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.1. Agregação: Calcular a média de todas as variáveis numéricas para cada genótipo (GEN)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dados_genotipo <span class="ot">&lt;-</span> dados_planta <span class="sc">%&gt;%</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(GEN, TIPO) <span class="sc">%&gt;%</span> <span class="co"># Mantemos também o TIPO (DOURADA ou MARROM) para referência</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Variáveis fenotípicas/laboratório (usando na.rm = TRUE por segurança)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">AP_media =</span> <span class="fu">mean</span>(AP, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">AC_media =</span> <span class="fu">mean</span>(AC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">NR_media =</span> <span class="fu">mean</span>(NR, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">MC_media =</span> <span class="fu">mean</span>(MC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">MG_media =</span> <span class="fu">mean</span>(MG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Variáveis extraídas das imagens (cápsulas e grãos)</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">NC_medio =</span> <span class="fu">mean</span>(NC, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">NG_medio =</span> <span class="fu">mean</span>(NG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">CG_medio =</span> <span class="fu">mean</span>(CG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">LG_medio =</span> <span class="fu">mean</span>(LG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span> <span class="co"># Remove o agrupamento após o resumo</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.2. Junção Final: Adicionar a massa de mil grãos (mmg) ao data frame de genótipos</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>dados_finais <span class="ot">&lt;-</span> dados_genotipo <span class="sc">%&gt;%</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(mmg, <span class="at">by =</span> <span class="st">"GEN"</span>)</span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultado Final: Visualizar as primeiras linhas da tabela consolidada por genótipo</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_finais)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 418
-Columns: 4
-$ img &lt;chr&gt; "100_Grãos - contagem_1_2023-12-22-08-06-58", "101_Grãos - contage…
-$ NG  &lt;int&gt; 231, 288, 328, 246, 699, 762, 704, 422, 352, 1572, 496, 220, 281, …
-$ CG  &lt;dbl&gt; 0.3894683, 0.3597025, 0.3635707, 0.3629542, 0.3662044, 0.3632955, …
-$ LG  &lt;dbl&gt; 0.2023824, 0.1768752, 0.1777208, 0.1827836, 0.1822657, 0.1808560, …</code></pre>
+<pre><code># A tibble: 6 × 16
+  GEN   TIPO.x  AP_media AC_media NR_media MC_media MG_media NC_medio NG_medio
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 G1    DOURADA     77.2     39.4     2.6      4.60     3.59    110.      705.
+2 G10   MARROM     105.      62.9     2.4      1.89     1.33     39.2     247.
+3 G100  MARROM      96.8     61.2     4.2      2.36     1.79     47.8     319 
+4 G104  MARROM      87.6     47.8     4.4      4.26     1.96     92.4     620 
+5 G108  DOURADA     93.8     56.8     3.4      2.77     2.08     67.6     464.
+6 G11   MARROM      85.2     53       2.67     2.08     1.64     51.2     343.
+# ℹ 7 more variables: CG_medio &lt;dbl&gt;, LG_medio &lt;dbl&gt;, PLOT &lt;dbl&gt;, ROW &lt;dbl&gt;,
+#   COL &lt;dbl&gt;, TIPO.y &lt;chr&gt;, mmg &lt;dbl&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculo número total de cápsulas (NC)** para cada planta.</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>capsulas_nc <span class="ot">&lt;-</span> </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  capsulas <span class="sc">%&gt;%</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(img) <span class="sc">%&gt;%</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">NC =</span> <span class="fu">n</span>(),</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar o resultado</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(capsulas_nc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.3. Ordenar os genótipos de forma numérica (G1, G2, G3... em vez de G1, G10...)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dados_finais <span class="ot">&lt;-</span> dados_finais <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">GEN_NUM =</span> <span class="fu">parse_number</span>(GEN)) <span class="sc">%&gt;%</span> <span class="co"># Extrai o número do genótipo temporariamente</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(TIPO.x, GEN_NUM) <span class="sc">%&gt;%</span>             <span class="co"># Ordena por TIPO e pelo número do genótipo</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>GEN_NUM)                         <span class="co"># Remove a coluna temporária</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar as primeiras linhas organizadas</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_finais, <span class="dv">15</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 2
-  img                                   NC
-  &lt;chr&gt;                              &lt;int&gt;
-1 100_Cápsulas_1_2023-12-22-07-58-19    32
-2 101_Cápsulas_1_2024-02-22-03-06-13    43
-3 102_Cápsulas_1_2024-02-22-03-09-17    54
-4 103_Cápsulas_1_2024-02-22-03-10-41    37
-5 104_Cápsulas_1_2024-02-22-03-12-01    52
-6 105_Cápsulas_1_2024-02-22-03-14-13    90</code></pre>
+<pre><code># A tibble: 15 × 16
+   GEN   TIPO.x  AP_media AC_media NR_media MC_media MG_media NC_medio NG_medio
+   &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+ 1 G1    DOURADA     77.2     39.4     2.6      4.60     3.59    110.      705.
+ 2 G3    DOURADA     74.8     40.5     3.5      5.75     3.49    141       980.
+ 3 G5    DOURADA     77.4     42       4.4      6.73     5.28    224      1092.
+ 4 G6    DOURADA     75       45       2.5      4.71     3.58    102.      711.
+ 5 G7    DOURADA     76.4     44       3.25     3.58     2.60     87       635.
+ 6 G18   DOURADA     73.2     42       3.6      4.67     3.68    104.      763.
+ 7 G19   DOURADA     80.2     44.2     2.8      2.2      1.55     63.8     421.
+ 8 G20   DOURADA     73.2     42.2     2        1.59     1.34     51.4     341.
+ 9 G21   DOURADA     70.6     41.4     2        2.74     2.12     58       412.
+10 G22   DOURADA     76.8     47.4     2.67     2.64     1.93     60.4     383.
+11 G23   DOURADA     70.6     46       2.2      4.93     3.89    104       692.
+12 G36   DOURADA     73.8     41.8     2.4      2.13     1.43     45.2     290.
+13 G37   DOURADA     80.1     49.3     2.25     1.76     1.69     70.8     514 
+14 G43   DOURADA     72       48       1.75     1.49     1.16     31.8     239 
+15 G55   DOURADA     73.9     51.4     2.67     2.10     1.47     58.4     443 
+# ℹ 7 more variables: CG_medio &lt;dbl&gt;, LG_medio &lt;dbl&gt;, PLOT &lt;dbl&gt;, ROW &lt;dbl&gt;,
+#   COL &lt;dbl&gt;, TIPO.y &lt;chr&gt;, mmg &lt;dbl&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificar a estrutura do novo data frame</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(capsulas_nc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3.4. Limpar e selecionar apenas as colunas essenciais para o resultado final</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>dados_finais_limpo <span class="ot">&lt;-</span> dados_finais <span class="sc">%&gt;%</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Manter apenas uma coluna de TIPO (renomeando para 'TIPO')</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TIPO =</span> TIPO.x) <span class="sc">%&gt;%</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Selecionar e ordenar as colunas de forma limpa</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(GEN, TIPO, AP_media, AC_media, NR_media, MC_media, MG_media, </span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         NC_medio, NG_medio, CG_medio, LG_medio, mmg)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar o resultado final limpo</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(dados_finais_limpo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 409
-Columns: 2
-$ img &lt;chr&gt; "100_Cápsulas_1_2023-12-22-07-58-19", "101_Cápsulas_1_2024-02-22-0…
-$ NC  &lt;int&gt; 32, 43, 54, 37, 52, 90, 91, 103, 92, 58, 55, 237, 76, 37, 36, 90, …</code></pre>
+<pre><code># A tibble: 6 × 12
+  GEN   TIPO    AP_media AC_media NR_media MC_media MG_media NC_medio NG_medio
+  &lt;chr&gt; &lt;chr&gt;      &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 G1    DOURADA     77.2     39.4     2.6      4.60     3.59     110.     705.
+2 G3    DOURADA     74.8     40.5     3.5      5.75     3.49     141      980.
+3 G5    DOURADA     77.4     42       4.4      6.73     5.28     224     1092.
+4 G6    DOURADA     75       45       2.5      4.71     3.58     102.     711.
+5 G7    DOURADA     76.4     44       3.25     3.58     2.60      87      635.
+6 G18   DOURADA     73.2     42       3.6      4.67     3.68     104.     763.
+# ℹ 3 more variables: CG_medio &lt;dbl&gt;, LG_medio &lt;dbl&gt;, mmg &lt;dbl&gt;</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extração do ID</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>graos_resumo <span class="ot">&lt;-</span> graos_resumo <span class="sc">%&gt;%</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">str_extract</span>(<span class="fu">as.character</span>(img), <span class="st">"^</span><span class="sc">\\</span><span class="st">d+"</span>), </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unique</span>(graos_resumo<span class="sc">$</span>img)</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>capsulas_nc <span class="ot">&lt;-</span> capsulas_nc <span class="sc">%&gt;%</span></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">ID =</span> <span class="fu">str_extract</span>(<span class="fu">as.character</span>(img), <span class="st">"^</span><span class="sc">\\</span><span class="st">d+"</span>),</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unique</span>(capsulas_nc<span class="sc">$</span>img)</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="exploração-e-visualização" class="level3">
+<h3 class="anchored" data-anchor-id="exploração-e-visualização">4. Exploração e Visualização</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.1. Gráfico 1: Relação entre altura da planta (AP_media) e número de cápsulas (NC_medio)</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_finais_limpo, <span class="fu">aes</span>(<span class="at">x =</span> AP_media, <span class="at">y =</span> NC_medio, <span class="at">color =</span> TIPO)) <span class="sc">+</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">linetype =</span> <span class="st">"dashed"</span>) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Relação entre Altura da Planta e Número de Cápsulas"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparação entre os tipos de linhaça (Dourada e Marrom)"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Altura Média da Planta (AP)"</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Número Médio de Cápsulas (NC)"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Tipo de Linhaça"</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 28 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 28 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solucao_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.2. Gráfico 2: Comparação de altura entre Dourada e Marrom</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_finais_limpo, <span class="fu">aes</span>(<span class="at">x =</span> TIPO, <span class="at">y =</span> AP_media, <span class="at">fill =</span> TIPO)) <span class="sc">+</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribuição da Altura de Planta por Tipo de Linhaça"</span>,</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Tipo de Linhaça"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Altura Média da Planta (AP)"</span>,</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Tipo"</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 27 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 27 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solucao_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.3. Encontrar os Top 5 genótipos por tipo de linhaça com base na massa de grãos (MG_media)</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>top5_genotipos <span class="ot">&lt;-</span> dados_finais_limpo <span class="sc">%&gt;%</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TIPO) <span class="sc">%&gt;%</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> MG_media, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualizar a tabela com os top 5</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(top5_genotipos <span class="sc">%&gt;%</span> <span class="fu">select</span>(TIPO, GEN, MG_media))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 10 × 3
+   TIPO    GEN   MG_media
+   &lt;chr&gt;   &lt;chr&gt;    &lt;dbl&gt;
+ 1 DOURADA G5        5.28
+ 2 DOURADA G56       5.09
+ 3 DOURADA G23       3.89
+ 4 DOURADA G18       3.68
+ 5 DOURADA G1        3.59
+ 6 MARROM  G4        7.04
+ 7 MARROM  G2        6.32
+ 8 MARROM  G223      5.83
+ 9 MARROM  G63       5.01
+10 MARROM  G12       4.94</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.4. Calcular a média geral e a média dos top 5 para cada tipo</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>diferencial_selecao <span class="ot">&lt;-</span> dados_finais_limpo <span class="sc">%&gt;%</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(TIPO) <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media_Geral =</span> <span class="fu">mean</span>(MG_media, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media_Top5 =</span> <span class="fu">mean</span>(MG_media[GEN <span class="sc">%in%</span> top5_genotipos<span class="sc">$</span>GEN], <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">Diferencial_Selecao =</span> Media_Top5 <span class="sc">-</span> Media_Geral</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Exibir os valores calculados</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(diferencial_selecao)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  TIPO    Media_Geral Media_Top5 Diferencial_Selecao
+  &lt;chr&gt;         &lt;dbl&gt;      &lt;dbl&gt;               &lt;dbl&gt;
+1 DOURADA        2.28       4.31                2.03
+2 MARROM         2.20       5.83                3.62</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4.5. Gráfico 3: Representação do diferencial de seleção em gráfico de barras</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diferencial_selecao, <span class="fu">aes</span>(<span class="at">x =</span> TIPO, <span class="at">y =</span> Diferencial_Selecao, <span class="at">fill =</span> TIPO)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(Diferencial_Selecao, <span class="dv">2</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Diferencial de Seleção para Produção de Grãos (MG) por Tipo"</span>,</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Diferença entre a média dos Top 5 e a média geral"</span>,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Tipo de Linhaça"</span>,</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Diferencial de Seleção (DS)"</span>,</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Tipo"</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="solucao_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="conclusão" class="level3">
+<h3 class="anchored" data-anchor-id="conclusão">Conclusão</h3>
+<p>A análise integrada dos dados fenotípicos, de imagem e de massa permitiu uma avaliação abrangente dos genótipos de linhaça. A exploração visual indicou uma relação positiva entre a altura das plantas e o número de cápsulas, além de evidenciar diferenças fenotípicas importantes entre os tipos Dourada e Marrom, especialmente em relação à altura e à produtividade, apresentando plantas do tipo linhaça Marrom com maior altura média. Por fim, a identificação dos genótipos superiores (Top 5), sendo os genótipos de linhaça Marrom G4 e G2, com MG media 7.04 e 6.32, respectivamente, e de linhaça Dourada G5 e G56, com MG media 5.28 e 5.09, respectivamente, os mais notáveis; e o cálculo do diferencial de seleção demonstraram o potencial de ganho genético para a produção de grãos, fornecendo subsídios consistentes para a recomendação e seleção de variedades mais produtivas no programa de melhoramento.</p>
 
 
 </section>
